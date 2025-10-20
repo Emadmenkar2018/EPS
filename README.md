@@ -72,4 +72,32 @@ export default defineConfig([
     },
   },
 ])
+
+ ## Running the App
+
+      To run this app locally, follow these steps:
+
+      1. **Install dependencies**  
+        Run the following command in your project directory:
+        ```bash
+        npm install
+        ```
+      2. **Start the development server**  
+        Use this command to launch Vite's dev server:
+        ```bash
+        npm run dev
+        ```
+        The app will be available at [http://localhost:5173](http://localhost:5173) by default.
+
+      3. **Build for production**  
+        To create an optimized production build:
+        ```bash
+        npm run build
+        ```
+
+      4. **Preview the production build**  
+        After building, you can preview the production build locally:
+        ```bash
+        npm run preview
+        ```   
 ```
