@@ -11,7 +11,7 @@ export function Table({ data, selected }: { data: any[], selected: string[] }) {
                 <Column
                     key={code}
                     field={`rates.${code}`}
-                    title={code.toUpperCase()}
+                    title={code}
                     format="{0:n4}" />
             ))}
         </Grid>

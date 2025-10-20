@@ -8,7 +8,7 @@ export const fetchCurrencyList = async () => {
     return r.json();
 }
 
-export const fetchSevenDayRates = async (base: string, endDate: string) => {
+export const fetchSevenDayRates = async (base: string, endDate: Date) => {
     const dates = lastNDates(endDate, 7);
     const urls = dates.map((d: string) => `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${d}/v1/currencies/${base}.json`);
     const res = await Promise.all(urls.map((u: string) => fetch(u)));
@@ -21,15 +21,28 @@ export const fetchSevenDayRates = async (base: string, endDate: string) => {
 export function useCurrencyList() {
     return useQuery({
         queryKey: ['currencyList'],
-        queryFn: fetchCurrencyList,
+        queryFn: async () => {
+            const data = await fetchCurrencyList();
+            const entries: [string, string][] = Object.entries(data).map(([key, value]) => [key.toUpperCase(), value as string]);
+            entries.sort(([a], [b]) => a.localeCompare(b));
+            return Object.keys(entries)
+        },
         staleTime: 24 * 60 * 60 * 1000
     });
 }
 
-export function useRates(base: string, endDate: Date | string) {
+export function useRates(base: string, endDate: Date) {
     return useQuery({
         queryKey: ['rates', base, endDate],
-        queryFn: () => fetchSevenDayRates(base, endDate.toString()),
+        queryFn: async () => {
+            const data = await fetchSevenDayRates(base, endDate);
+            return data.map((item: any) => ({
+                date: item.date,
+                rates: Object.fromEntries(
+                    Object.entries(item.rates).map(([k, v]) => [k.toUpperCase(), v])
+                )
+            }));
+        },
         staleTime: 5 * 60 * 1000,
         refetchOnWindowFocus: false
     });

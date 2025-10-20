@@ -9,9 +9,9 @@ export const AppLayout = () => {
         >
             <div className="min-h-screen text-white bg-gradient-to-br from-slate-900 via-slate-950 to-black flex flex-col px-2 sm:px-4 md:px-8 overflow-x-hidden overflow-y-hidden">
                 <header className="mb-6">
-                    <h1 className="text-lg sm:text-lg md:text-lg font-bold tracking-tight text-center sm:text-center md:text-center py-6">
+                    <h2 className="text-md sm:text-md md:text-md font-bold tracking-tight text-center sm:text-center md:text-center py-6">
                         Currency Rates Dashboard
-                    </h1>
+                    </h2>
                 </header>
 
                 <div className="flex-1 w-full h-full overflow-auto">

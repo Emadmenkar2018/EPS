@@ -16,12 +16,10 @@ export const daysAgo = (n: number) => {
     return t;
 };
 
-export const lastNDates = (endDateStr: string, n: number) => {
-    const [y, m, d] = endDateStr.split('-').map((x) => parseInt(x, 10));
-    const end = new Date(y, m - 1, d);
+export const lastNDates = (endDate: Date, n: number) => {
     const arr = [];
     for (let i = n - 1; i >= 0; i--) {
-        const dt = new Date(end);
+        const dt = new Date(endDate);
         dt.setDate(dt.getDate() - i);
         arr.push(fmt(dt));
     }
