@@ -1,8 +1,13 @@
 import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
 
-export function Table({ data, selected }: { data: any[], selected: string[] }) {
+type TableProps = {
+    data: any[];
+    selected: string[];
+};
+
+export function Table({ data, selected }: TableProps) {
     return (
-        <Grid data={data}>
+        <Grid data-testid="grid" data={data}>
             <Column
                 field="date"
                 title="Date"

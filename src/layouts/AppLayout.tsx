@@ -1,10 +1,9 @@
 import { Outlet } from "react-router-dom";
 
 export const AppLayout = () => {
-
     return (
-        <div id="review-ui-web" className="w-full font-neue">
-            <div className="bg-gradient-to-br from-slate-900 flex flex-col px-2 rounded-xl ">
+        <div id="review-ui-web"  data-testid="root-layout" className="w-full font-neue">
+            <div className="bg-gradient-to-br from-slate-900 flex flex-col px-2 rounded-xl">
                 <header className="mb-6">
                     <h2 className="text-xl font-bold text-center py-2">
                         Currency Rates Dashboard

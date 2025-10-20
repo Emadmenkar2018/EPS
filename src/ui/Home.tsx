@@ -2,9 +2,8 @@ import { useCallback, useMemo, useState } from "react";
 import { daysAgo, today } from "../helpers/utils";
 import { useCurrencyList, useRates } from "../hooks/useRates";
 import { Table } from "../components/Table";
-import { MultiSelect } from "../components/MultiSelect";
-import { DropdownSelect } from "../components/DropdownSelect";
 import { DatePicker } from '@progress/kendo-react-dateinputs';
+import { DropDownList, MultiSelect } from "@progress/kendo-react-dropdowns";
 
 const DAYS_AGO = 90;
 const MIN_COUNTER_CURRENCIES = 3;
@@ -49,11 +48,14 @@ function Home() {
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
                     <div className="flex flex-col">
                         <label className="block text-sm font-medium mb-1 text-left">Base Currency</label>
-                        <DropdownSelect
-                            data={sortedCodes}
-                            value={base}
-                            onChange={(e) => setBase(e.target.value)}
-                        />
+                        <div className="flex-1">
+                            <DropDownList
+                                className="w-full rounded-xl bg-white/5 border border-white/20 px-3 py-2 text-left "
+                                data={sortedCodes}
+                                value={base}
+                                onChange={(e) => setBase(e.target.value)}
+                            />
+                        </div>
                     </div>
                     <div className="flex flex-col">
                         <label className="block text-sm font-medium mb-1 text-left">End Date</label>
@@ -68,8 +70,10 @@ function Home() {
                         <label className="block text-sm font-medium mb-1 text-left">Counter Currencies (Select from 3 to 7)</label>
                         <MultiSelect
                             data={sortedCodes}
-                            selected={selected}
+                            value={selected}
                             onChange={onSelectCounterCurrencies}
+                            className="w-full "
+                            placeholder="Enter Currency..."
                         />
                     </div>
                 </div>
